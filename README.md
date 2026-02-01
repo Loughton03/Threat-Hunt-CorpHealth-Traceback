@@ -62,16 +62,14 @@ Filenames:
 - Named Pipe: \Device\NamedPipe\msf-pipe-5902.
 
 ## Root Cause Analysis
-The root cause was the reuse of compromised credentials (yuki.tanaka) from a previously infected workstation (Patient Zero), allowing attackers to move laterally via RDP to the administrative workstation. The lack of MFA on internal RDP connections facilitated this pivot.
-## Technical Timeline
+The root cause was the reuse of compromised credentials (yuki.tanaka) from a previously infected workstation, allowing attackers to move laterally via RDP to the administrative workstation. The lack of MFA on internal RDP connections facilitated this pivot.
 
-## Nature of th# Attack
-The attack was a Targeted Bridge Takeover focusing on Financial Espionage. The threat actors demonstrated knowledge of the network topology (pivoting from a specific internal IP) and used “Living-off-the-Land” (LOTL) techniques to blend in with administrative traffic before deploying specialized offensive tools (Metasploit/Mimikatz) to achieve the final objectives.
+## Technical Timeline
 
 ## Impact Analysis
 - Confidentiality (Critical): Loss of sensitive financial data (banking/tax records), master passwords (Azuki-Passwords.kdbx), and browser-stored credentials.
 - Integrity (High): System integrity compromised via the creation of backdoor administrative accounts and the modification of system groups.
-- Availability (Low): No ransomware or destructive wiping was observed; operations were not halted, though trust in the system is negated.
+- Availability (Low): No ransomware or destructive wiping was observed; operations were not halted.
 
 ## Response and Recovery Analysis
 ## Immediate Response Actions
@@ -82,8 +80,7 @@ Malware Removal
 - Removal Techniques: Delete identified files and remove the yuki.tanaka2 user profile.
 - Verification: Verify no active named pipes matching msf-pipe-* exist and that the rogue account is removed from the Administrators group.
 System Patching
-- Vulnerability Identification: Lack of LAPS and unrestricted RDP access allowed the spread.
-- Patch Management: Ensure all Windows updates are applied (ironically, the malware masqueraded as KB5044273).
+- Patch Management: Ensure all Windows updates are applied.
 
 
 ## Recovery Steps
@@ -92,7 +89,7 @@ Data Restoration
 - Restoration Process: Re-image azuki-adminpc is recommended due to the level of administrative compromise.
 - Data Integrity Checks: Validate financial records against bank statements to ensure no tampering occurred during the breach.
 System Validation
-- Security Measures: Deploy LAPS and EDR agents with updated rules for curl/robocopy anomalies.
+- Security Measures: Deploy EDR agents with updated rules for curl/robocopy anomalies.
 - Operational Checks: Verify user access to necessary shares without using the compromised yuki.tanaka credentials.
 
 ## Post-Incident Actions
