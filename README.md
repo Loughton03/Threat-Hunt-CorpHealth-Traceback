@@ -158,6 +158,22 @@ Network Indicators
 Attacker Source IP: [Refer to Flag 1 results]
 File Server IP: 10.1.0.188
 Exfiltration Destination: [Extract from Flag 16/17 command lines]
+File System Indicators
+Renamed Credential Tool: [Flag 14 - FileName and SHA256]
+Persistence Beacon: [Flag 19 - Registry Value Data path]
+Compressed Archives: [Flag 13 - Identify .7z/.zip file names]
+Staged Data Directory: [Flag 12 - robocopy destination path]
+Registry Indicators
+Persistence Key: HKCU/HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+Persistence Value Name: [Flag 18 result]
+Process Execution
+mstsc.exe with specific command line parameters
+net.exe/net1.exe for share enumeration
+whoami.exe for privilege checking
+certutil.exe for file downloads
+7z.exe for data compression
+curl.exe/powershell.exe for exfiltration
+Renamed executables targeting LSASS
 
 ## COMPROMISED ASSETS
 Confirmed Compromised Systems
